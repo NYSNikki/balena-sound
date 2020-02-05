@@ -11,5 +11,5 @@ if [[ -z $DISABLE_MULTI_ROOM ]]; then
   npm start
 else
   echo "Multi-room audio is disabled, not starting fleet supervisor."
-  while : ; do echo "${MESSAGE=Idling...}"; sleep ${INTERVAL=600}; done
+  exit 0
 fi

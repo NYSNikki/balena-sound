@@ -5,5 +5,5 @@ if [[ -z $DISABLE_MULTI_ROOM ]]; then
   snapserver
 else
   echo "Multi-room audio is disabled, not starting snapserver."
-  while : ; do echo "${MESSAGE=Idling...}"; sleep ${INTERVAL=600}; done
+  exit 0
 fi

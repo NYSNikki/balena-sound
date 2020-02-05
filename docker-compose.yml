@@ -29,7 +29,7 @@ services:
       - snapcast:/var/cache/snapcast
   fleet-supervisor:
     build: ./fleet-supervisor
-    restart: always
+    restart: on-failure
     network_mode: host
     privileged: true
     ports:
@@ -41,7 +41,7 @@ services:
       context: ./snapcast-server
       args:
         SNAPCAST_VERSION: 0.17.1
-    restart: always
+    restart: on-failure
     ports:
       - 1704:1704
       - 1705:1705
@@ -52,7 +52,7 @@ services:
       context: ./snapcast-client
       args:
         SNAPCAST_VERSION: 0.17.1
-    restart: always 
+    restart: on-failure 
     network_mode: host 
     privileged: true
     volumes:
