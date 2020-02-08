@@ -1,9 +1,9 @@
 version: '2'
 services:
-  bluetooth-audio:
+  bluetooth:
     network_mode: host
     restart: always
-    build: ./bluetooth-audio
+    build: ./bluetooth
     privileged: true
     labels:
       io.balena.features.dbus: 1
