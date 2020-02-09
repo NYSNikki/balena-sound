@@ -1,2 +1,49 @@
 #!/usr/bin/env bash
 
+# This code is from here: https://github.com/simonprickett/bash-traffic-lights-pi/blob/master/trafficlights.sh
+
+# Common path for all GPIO access
+BASE_GPIO_PATH=/sys/class/gpio
+
+# Assign names to GPIO pin numbers for each button
+UP=9
+BLUETOOTH=10
+DOWN=11
+
+# Assign names to states
+ON="1"
+
+# Utility function to export a pin if not already exported
+exportPin()
+{
+  if [ ! -e $BASE_GPIO_PATH/gpio$1 ]; then
+    echo "$1" > $BASE_GPIO_PATH/export
+  fi
+}
+
+# Utility function to set a pin as an output
+setOutput()
+{
+  echo "out" > $BASE_GPIO_PATH/gpio$1/direction
+}
+
+# Utility function to change state of a button
+setButtonState()
+{
+  echo $2 > $BASE_GPIO_PATH/gpio$1/value
+}
+
+# Export pins so that we can use them
+exportPin $UP
+exportPin $BLUETOOTH
+exportPin $DOWN
+
+# Set pins as outputs
+setOutput $UP
+setOutput $BLUETOOTH
+setOutput $DOWN
+
+# Set all buttons on
+setButtonState $UP $ON
+setButtonState $BLUETOOTH $ON
+setButtonState $DOWN $ON
