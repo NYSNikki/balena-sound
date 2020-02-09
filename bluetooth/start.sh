@@ -16,6 +16,11 @@ CONNECTION_NOTIFY_VOLUME="${CONNECTION_NOTIFY_VOLUME:-75}"
 echo $CONNECTION_NOTIFY_VOLUME > /usr/src/connection_notify_volume
 printf "Connection notify volume is %s%%\n" "$CONNECTION_NOTIFY_VOLUME"
 
+# Set the volume of the connection notification sounds here
+BUTTON_VOLUME="${BUTTON_VOLUME:-75}"
+echo $BUTTON_VOLUME > /usr/src/button_volume
+printf "Button volume is %s%%\n" "$BUTTON_VOLUME"
+
 # Set the discoverable timeout here
 dbus-send --system --dest=org.bluez --print-reply /org/bluez/hci0 org.freedesktop.DBus.Properties.Set string:'org.bluez.Adapter1' string:'DiscoverableTimeout' variant:uint32:0 > /dev/null
 
